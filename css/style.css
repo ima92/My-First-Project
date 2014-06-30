@@ -1,0 +1,29 @@
+.header {
+    text-align: center;
+}
+
+.text {
+    border: none;
+    font-style: italic;
+}
+
+.text1 {
+    border: none;
+    font-style: italic;
+}
+
+.visible {
+    border: none;
+}
+
+#test {
+    border: solid;
+    padding: 5px;
+    width: 750px;
+}
+
+#form {
+    padding:5px;
+    height: 300px;
+    width: 300px;
+}

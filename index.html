@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Shopping list!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="lista">
+
+<h1 class="header">Lista de cumparaturi</h1>
+<br />
+<br />
+<div ng-controller="listCtrl">
+    <form>
+        <input type="button" value="Afiseaza formular" ng-click="showForm()">
+        <div id="form" ng-show="checked">
+            <br />
+            Nume:<input class="text" type="text" ng-model="newProduct.nume" placeholder="Introduceti numele" required />{{newProduct.nume}}<br /><hr />
+            Descriere:<input class="text1" type="text" ng-model="newProduct.descriere" placeholder="Introduceti descrierea" required />{{newProduct.descriere}}<br /><hr />
+            Cantitate:<input class="visible" type="number" value="0" ng-model="newProduct.cantitate" /><br /><hr />
+            Pret:<input class="visible" type="number" value="0" ng-model="newProduct.pret" /><br /><hr />
+            Total:<span>{{newProduct.total(newProduct.pret,newProduct.cantitate)}}</span> <br />
+            <br />
+            <input type="button" value="Adauga in cos" ng-click="add()" />
+        </div>
+
+        <h3>Lista de cumparaturi este:</h3>
+        <br />
+
+        <div ng-repeat="product in shoppingList">
+            <div id="test">
+                <input type="checkbox" ng-model="product.cumparat" />
+                    <span ng-disabled="checked">
+                             <span >{{"Nume: "+ product.nume}}</span>
+                             <span >{{"Descriere: " + product.descriere}}</span>
+                             <span>{{"Cantitate:" + product.cantitate}}</span>
+                             <span>{{"Pret: " + product.pret}}</span>
+                             <span>{{"Total: " + product.total(product.pret, product.cantitate)}}</span>
+                             <input type="button" ng-click="edit()" value="Edit" />
+                             <input type="button" ng-click="remove()" value="Remove" />
+            </div>
+            <br />
+                <span ng-show="editField">
+                  <div>
+                      Nume:       <input type="text" ng-model="product.nume" />
+                      Descriere:  <input type="text" ng-model="product.descriere" />
+                      Cantitate:  <input type="number" ng-model="product.cantitate" required />
+                      Pret:       <input type="number" ng-model="product.pret" required />
+                      Total:      <span>{{product.total(product.pret,product.cantitate)}}</span> <br />
+                  </div>
+                 <br />
+                </span>
+
+        </div>
+
+        <form>
+</div>
+
+
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/selector.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
