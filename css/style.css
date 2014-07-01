@@ -19,7 +19,7 @@
 #test {
     border: solid;
     padding: 5px;
-    width: 750px;
+    width: 1200px;
 }
 
 #form {
@@ -27,3 +27,20 @@
     height: 300px;
     width: 300px;
 }
+
+.taiat {
+    text-decoration: line-through;
+}
+
+.text:focus {
+    background-color: yellow;
+}
+
+.text1:focus {
+    background-color: yellow;
+}
+
+.visible:focus {
+    background-color: yellow;
+}
+
