@@ -11,25 +11,29 @@
 <br />
 <br />
 <div ng-controller="listCtrl">
-    <form>
-        <input type="button" value="Afiseaza formular" ng-click="showForm()">
-        <div id="form" ng-show="checked">
-            <br />
-            Nume:<input class="text" type="text" ng-model="newProduct.nume" placeholder="Introduceti numele" required />{{newProduct.nume}}<br /><hr />
-            Descriere:<input class="text1" type="text" ng-model="newProduct.descriere" placeholder="Introduceti descrierea" required />{{newProduct.descriere}}<br /><hr />
-            Cantitate:<input class="visible" type="number" value="0" ng-model="newProduct.cantitate" /><br /><hr />
-            Pret:<input class="visible" type="number" value="0" ng-model="newProduct.pret" /><br /><hr />
-            Total:<span>{{newProduct.total(newProduct.pret,newProduct.cantitate)}}</span> <br />
-            <br />
-            <input type="button" value="Adauga in cos" ng-click="add()" />
-        </div>
-
-        <h3>Lista de cumparaturi este:</h3>
+    <div>
+        <label>Search:</label>
+        <input class="search" type="search" ng-model="search" placeholder="Enter to Search">
+    </div>
+    <input type="button" value="Afiseaza formular" ng-click="showForm()"/>
+    <input type="button" value="Remove checked" ng-click="remove($index)"/>
+    <div id="form" ng-show="checked">
         <br />
+        Nume:<input class="text" type="text" ng-model="newProduct.nume" placeholder="Introduceti numele" required />{{newProduct.nume}}<br /><hr />
+        Descriere:<input class="text1" type="text" ng-model="newProduct.descriere" placeholder="Introduceti descrierea" required />{{newProduct.descriere}}<br /><hr />
+        Cantitate:<input class="visible" type="number" value="0" ng-model="newProduct.cantitate" /><br /><hr />
+        Pret:<input class="visible" type="number" value="0" ng-model="newProduct.pret" /><br /><hr />
+        Total:<span>{{newProduct.total(newProduct.pret,newProduct.cantitate)}}</span> <br />
+        <br />
+        <input type="button" value="Adauga in cos" ng-click="add()" />
+    </div>
 
-        <div ng-class="{'taiat': product.cumparat}" ng-repeat="product in shoppingList" />
-        <div id="test">
-            <input type="checkbox" ng-model="product.cumparat" />
+    <h3>Lista de cumparaturi este:</h3>
+    <br />
+
+    <div ng-class="{'taiat': product.cumparat}" ng-repeat="product in shoppingList | filter:search | filter:new_search" />
+    <div id="test">
+        <input type="checkbox" ng-model="product.cumparat" />
                     <span ng-hide="editing">
                              <span >{{"Nume: "+ product.nume}}</span>
                              <span >{{"Descriere: " + product.descriere}}</span>
@@ -37,27 +41,27 @@
                              <span>{{"Pret: " + product.pret}}</span>
                              <span>{{"Total: " + product.total(product.pret, product.cantitate)}}</span>
                              <input type="submit" ng-hide="editing" ng-click="editing = true" value="Edit" />
-                             <input type="button" ng-click="remove()" value="Remove" />
+                             <input type="button" ng-click="removeSelected(product)" value="Remove" />
                     </span>
                     <span ng-show="editing" ng-submit="editing = false">
                              Nume:<input class="text" type="text" ng-model="product.nume"/>
                              Descriere:<input class="text1" type="text" ng-model="product.descriere" required />
                              Cantitate:<input class="visible" type="number" ng-model="product.cantitate" />
                              Pret:<input class="visible" type="number" ng-model="product.pret" />
-                             Total:<span>{{product.total(product.pret,product.cantitate)}}
+                             Total:<span>{{product.total(product.pret,product.cantitate)}}</span>
                              <input type="submit" ng-show="editing" ng-click="editing = false" value="Save"/>
                     </span>
+    </div>
+    <br />
+</div>
+<br />
 
-        </div>
-        <br />
+
 
 </div>
 
-<form>
-    </div>
 
-
-    <script type="text/javascript" src="js/angular.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

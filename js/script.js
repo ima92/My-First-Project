@@ -1,5 +1,5 @@
 angular.module('lista',[])
-    .controller('listCtrl',function($scope){
+    .controller('listCtrl',['$scope', 'filterFilter', function($scope, filterFilter) {
 
         $scope.shoppingList = [];
         $scope.checked = false;
@@ -46,9 +46,23 @@ angular.module('lista',[])
         }
 
 
+        $scope.remove = function(){
+            $scope.shoppingList = filterFilter($scope.shoppingList, function (product) {
+                return !product.cumparat;
+            });
+        };
+
+        $scope.removeSelected = function (product) {
+            for (var i = 0; i < $scope.shoppingList.length; i++){
+                if( product.nume == $scope.shoppingList[i].nume ) {
+                    $scope.shoppingList.splice(i, 1);
+                    break;
+                };
+            };
+        };
 
 
 
 
 
-    });
+    }]);

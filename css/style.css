@@ -44,3 +44,6 @@
     background-color: yellow;
 }
 
+.search:focus {
+    background-color: yellow;
+}
